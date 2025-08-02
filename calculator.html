@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator.1</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.0/lib/browser/math.min.js"></script>
+  <style>
+  button {
+    border: orange solid 10px;
+    background-color: black;
+    color: orange;
+    font-size: 65px;
+    font-weight: 500;
+  }
+  
+  .top {
+    margin-top: 140px;
+  }
+  
+  .interface {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 900px;
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+  
+  .top-screen {
+    color: orange;
+    height: 180px;
+    border: orange 20px solid;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 100px;
+    padding-right: 20px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    background-color: black;
+  }
+  
+  .bottom-screen {
+    color: orange;
+    height: 100px;
+    width: 500px;
+    border: orange 20px solid;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 70px;
+    padding-right: 20px;
+    justify-self: end;
+    font-weight: 700;
+    background-color: black;
+  }
+  body {
+    margin: 0;
+    background-color: black;
+ }
+  </style>
+</head>
+<body>
+  <header class="top">
+  <div class="top-screen"></div>
+  <div class="bottom-screen"></div>
+  </header>
+  <div class="interface">
+  <button onclick="
+    process('1');
+    ">1</button>
+  <button onclick="
+    process('2')
+    ">2</button>
+  <button onclick="
+    process('3')
+    ">3</button>
+  <button onclick="
+    process('+')
+    ">+</button>
+    
+  <button onclick="
+    process('4')
+    ">4</button>
+  <button onclick="
+    process('5')
+    ">5</button>
+  <button onclick="
+    process('6')
+    ">6</button>
+  <button onclick="
+    process('-')
+    ">-</button>
+    
+  <button onclick="
+    process('7')
+    ">7</button>
+  <button onclick="
+    process('8')
+    ">8</button>
+  <button onclick="
+    process('9')
+    ">9</button>
+  <button onclick="
+    process('/');
+    ">÷</button>
+
+  <button onclick="
+    process('c');
+    result();
+    ">Clear</button>
+  <button onclick="
+    process('0')
+    ">0</button>
+  <button onclick="
+    process('=');
+    result('=');
+    ">=</button>
+  <button onclick="
+    process('*');
+    ">*</button>
+  </div>
+  
+  <script>
+  let calculation = '';
+  
+  function process(value) {
+      
+    if (value === '1') {
+      calculation += '1';
+    } else if (value === '2') {
+      calculation += '2';
+    } else if (value === '3') {
+      calculation += '3';
+    } else if (value === '4') {
+      calculation += '4';
+    } else if (value === '5') {
+      calculation += '5';
+    } else if (value === '6') {
+      calculation += '6';
+    } else if (value === '7') {
+      calculation += '7';
+    } else if (value === '8') {
+      calculation += '8';
+    } else if (value === '9') {
+      calculation += '9';
+    } else if (value === '0') {
+      calculation += '0';
+    }  else if (value === '+') {
+      calculation += '+';
+    } else if (value === '-') {
+      calculation += '-';
+    } else if (value === '*') {
+      calculation += '*';
+    } else if (value === '/') {
+      calculation += '/';
+    } else if (value === '=') {
+      calculation = math.evaluate(calculation).toString();
+    } else if (value === 'c') {
+      calculation = '';
+    }
+    document.querySelector('.top-screen').innerHTML = calculation;
+    
+    return calculation;
+  }
+  
+  function result(input) {
+    const solved = process();
+    if (input === '=') {
+    document.querySelector('.top-screen').innerHTML = 'Done.';
+      document.querySelector('.bottom-screen').innerHTML = solved;
+    } else {
+   document.querySelector('.top-screen').innerHTML = '';
+      
+      document.querySelector('.bottom-screen').innerHTML = '';
+    }
+  }
+  </script>
+</body>
+</html>
